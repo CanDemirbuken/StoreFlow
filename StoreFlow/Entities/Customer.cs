@@ -9,4 +9,6 @@ public class Customer
     public string? District { get; set; }
     public decimal Balance { get; set; }
     public string? ImageUrl { get; set; }
+
+    public List<Order> Orders { get; set; }
 }

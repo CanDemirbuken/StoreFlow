@@ -1,0 +1,43 @@
+﻿@model List<Order>
+
+<div class="col-md-8 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <i class="fas fa-table"></i>
+                Son Siparişler
+            </h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Müğşteri</th>
+                            <th>Ürün</th>
+                            <th>Adet</th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+                                <td class="font-weight-bold">
+                                    @order.Customer.Name @order.Customer.Surname
+                                </td>
+                                <td class="text-muted">
+                                    @order.Product.Name
+                                </td>
+                                <td>
+                                    @order.Count
+                                </td>
+                                <td>
+                                    <label class="badge badge-success badge-pill">@order.Status</label>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
