@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace StoreFlow.ViewComponents;
+namespace StoreFlow.ViewComponents.DashboardLayoutViewComponents;
 
-public class ThemeSettingsWrapperDashboardViewComponent : ViewComponent
+public class RightSidebarDashboardViewComponent : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {
