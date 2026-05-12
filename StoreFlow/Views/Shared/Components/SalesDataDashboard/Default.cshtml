@@ -1,4 +1,4 @@
-﻿@model List<Order>
+﻿@model List<OrderViewModel>
 
 <div class="col-md-8 grid-margin stretch-card">
     <div class="card">
@@ -31,13 +31,27 @@
                                     @order.Count
                                 </td>
                                 <td>
-                                    <label class="badge badge-success badge-pill">@order.Status</label>
+                                    <label class="badge @order.StatusBadgeClass badge-pill">
+                                        @order.Status
+                                    </label>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <i class="fas fa-calendar-alt"></i>
+                Takvim
+            </h4>
+            <div id="inline-datepicker-example" class="datepicker"></div>
         </div>
     </div>
 </div>
