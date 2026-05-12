@@ -1,0 +1,38 @@
+﻿@model List<Todo>
+
+<div class="col-md-7 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <i class="fas fa-thumbtack"></i>
+                Yapılacaklar Listesi
+            </h4>
+            <div class="add-items d-flex">
+                <input type="text" id="todoDescription" class="form-control todo-list-input" placeholder="Bugün neye ihtiyacınız var?">
+                <button class="add btn btn-primary font-weight-bold todo-list-add-btn" id="add-task">Ekle</button>
+            </div>
+            <div class="list-wrapper">
+                <ul id="todoList" class="d-flex flex-column-reverse todo-list">
+                    @foreach (var item in Model)
+                    {
+                        var completedClass = item.Status ? "completed" : "";
+
+                        <li class="@completedClass">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input data-todo-id="@item.Id" class="checkbox" type="checkbox" checked="@item.Status">
+                                    @item.Description
+                                </label>
+                            </div>
+                            <i data-todo-id-remove="@item.Id" class="remove fa fa-times-circle"></i>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/custom-js/todo-add.js"></script>
+<script src="~/custom-js/todo-update.js"></script>
+<script src="~/custom-js/todo-remove.js"></script>
