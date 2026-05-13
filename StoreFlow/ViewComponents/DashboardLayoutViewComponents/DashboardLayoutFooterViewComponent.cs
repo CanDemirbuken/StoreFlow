@@ -2,7 +2,7 @@
 
 namespace StoreFlow.ViewComponents.DashboardLayoutViewComponents;
 
-public class FooterDashboardViewComponent : ViewComponent
+public class DashboardLayoutFooterViewComponent : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {

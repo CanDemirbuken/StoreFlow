@@ -5,7 +5,7 @@ using StoreFlow.Models;
 
 namespace StoreFlow.ViewComponents.DashboardIndexViewComponents;
 
-public class SalesDataDashboardViewComponent(StoreDbContext context) : ViewComponent
+public class DashboardIndexSalesDataViewComponent(StoreDbContext context) : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {

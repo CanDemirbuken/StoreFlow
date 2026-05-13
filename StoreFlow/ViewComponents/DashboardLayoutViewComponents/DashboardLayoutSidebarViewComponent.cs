@@ -2,7 +2,7 @@
 
 namespace StoreFlow.ViewComponents.DashboardLayoutViewComponents;
 
-public class SidebarDashboardViewComponent : ViewComponent
+public class DashboardLayoutSidebarViewComponent : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {
