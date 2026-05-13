@@ -8,4 +8,9 @@ public class DashboardController : Controller
     {
         return View();
     }
+
+    public IActionResult Statistics()
+    {
+        return View();
+    }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace StoreFlow.ViewComponents.DashboardIndexViewComponents;
+namespace StoreFlow.ViewComponents.DashboardLayoutViewComponents;
 
-public class ChartDashboardViewComponent : ViewComponent
+public class DashboardLayoutHeadViewComponent : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {

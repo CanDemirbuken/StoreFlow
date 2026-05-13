@@ -1,20 +1,20 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-@await Component.InvokeAsync("HeadDashboard")
+@await Component.InvokeAsync("DashboardLayoutHead")
 
 <body>
     <div class="container-scroller">
 
-        @await Component.InvokeAsync("NavbarDashboard")
+        @await Component.InvokeAsync("DashboardLayoutNavbar")
 
         <div class="container-fluid page-body-wrapper">
 
-            @await Component.InvokeAsync("ThemeSettingsWrapperDashboard")
+            @await Component.InvokeAsync("DashboardLayoutThemeSettingsWrapper")
 
-            @await Component.InvokeAsync("RightSidebarDashboard")
+            @await Component.InvokeAsync("DashboardLayoutRightSidebar")
 
-            @await Component.InvokeAsync("SidebarDashboard")
+            @await Component.InvokeAsync("DashboardLayoutSidebar")
             
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -27,10 +27,10 @@
                     @RenderBody()
 
                 </div>
-                @await Component.InvokeAsync("FooterDashboard")
+                @await Component.InvokeAsync("DashboardLayoutFooter")
             </div>
         </div>
     </div>
-    @await Component.InvokeAsync("ScriptsDashboard")
+    @await Component.InvokeAsync("DashboardLayoutScripts")
 </body>
 </html>

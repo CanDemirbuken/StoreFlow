@@ -4,7 +4,7 @@ using StoreFlow.Context;
 
 namespace StoreFlow.ViewComponents.DashboardIndexViewComponents
 {
-    public class TodoDashboardViewComponent(StoreDbContext context) : ViewComponent
+    public class DashboardIndexTodoViewComponent(StoreDbContext context) : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {

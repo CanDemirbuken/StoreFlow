@@ -3,13 +3,13 @@
     ViewBag.Title = "Dashboard";
 }
 
-@await Component.InvokeAsync("CardStatisticsDashboard")
-@await Component.InvokeAsync("ChartDashboard")
+@await Component.InvokeAsync("DashboardIndexCardStatistics")
+@await Component.InvokeAsync("DashboardIndexChart")
 
 <div class="row">
-    @await Component.InvokeAsync("SalesStatusDashboard")
-    @await Component.InvokeAsync("ActivityDashboard")
-    @await Component.InvokeAsync("DailySalesDashboard")
+    @await Component.InvokeAsync("DashboardIndexSalesStatus")
+    @await Component.InvokeAsync("DashboardIndexActivity")
+    @await Component.InvokeAsync("DashboardIndexDailySales")
 </div>
 <div class="row">
     <div class="col-12 grid-margin">
@@ -151,10 +151,10 @@
 </div>
 
 <div class="row">
-    @await Component.InvokeAsync("SalesDataDashboard")
+    @await Component.InvokeAsync("DashboardIndexSalesData")
 </div>
 <div class="row">
-    @await Component.InvokeAsync("TodoDashboard")
+    @await Component.InvokeAsync("DashboardIndexTodo")
 
     <div class="col-md-5 grid-margin stretch-card">
         <div class="card">

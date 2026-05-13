@@ -2,7 +2,7 @@
 
 namespace StoreFlow.ViewComponents.DashboardIndexViewComponents;
 
-public class DailySalesDashboardViewComponent : ViewComponent
+public class DashboardIndexSalesStatusViewComponent : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {
