@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "_Layout";
+    string exist = ViewBag.exist;
+    string city = ViewBag.city;
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Şehirde Müşteri Var mı?</h4>
+                <form asp-action="CustomerGetByCity" class="forms-sample" method="get">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Şehir Adı</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Şehir Adı" name="city" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Kontrol Et</button>
+                </form>
+
+                <br />
+                @if (exist == "true")
+                {
+                    <div class="alert alert-success">@city Şehrinde en az 1 müşteri bulunmaktadır.</div>
+                }
+                else if (exist == "false")
+                {
+                    <div class="alert alert-danger">@city Şehrinde müşteri bulunmamaktadır.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
