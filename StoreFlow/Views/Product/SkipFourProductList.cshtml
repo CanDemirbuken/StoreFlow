@@ -1,0 +1,50 @@
+﻿@model List<Product>
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Dört Ürün Atlanarak On Ürün Listesi";
+    int count = 1;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Dört Ürün Atlanarak On Ürün Listesi</h3>
+                <p class="card-description">
+                    <code>Ürün ile ilgili işlemlerinizi buradan yapabilirsiniz.</code>
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ürün Adı</th>
+                                <th>Kategori</th>
+                                <th>Birim Fiyat</th>
+                                <th>Stok</th>
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(count++)</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Category.Name</td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Stock</td>
+                                    <td><a href="@Url.Action("DeleteProduct", "Product", new { id = item.Id })" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="@Url.Action("UpdateProduct", "Product", new { id = item.Id })" class="btn btn-outline-warning">Güncelle</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="@Url.Action("CreateProduct", "Product")" class="btn btn-outline-primary">Yeni Ürün Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
