@@ -1,0 +1,103 @@
+﻿@model Order
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Sipariş Ekle";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Sipariş Ekleme Sayfası</h4>
+
+                <form class="forms-sample" method="post">
+
+                    <div class="form-group">
+                        <label>Müşteri</label>
+                        <select asp-for="CustomerId"
+                                asp-items="@ViewBag.Customers"
+                                class="form-control">
+                            <option value="">-- Müşteri Seçin --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ürün Adı</label>
+                        <select asp-for="ProductId"
+                                asp-items="@ViewBag.Products"
+                                class="form-control"
+                                id="productSelect">
+                            <option value="">-- Ürün Seçin --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sipariş Adedi</label>
+                        <input type="number"
+                               class="form-control"
+                               asp-for="Count"
+                               id="countInput"
+                               min="1"
+                               value="1"
+                               placeholder="Sipariş Adedi" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Birim Fiyat</label>
+                        <input type="number"
+                               class="form-control"
+                               asp-for="UnitPrice"
+                               id="unitPriceInput"
+                               readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Toplam Tutar</label>
+                        <input type="number"
+                               class="form-control"
+                               asp-for="TotalPrice"
+                               id="totalPriceInput"
+                               readonly />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">
+                        Ekle
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const productPrices = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.ProductPrices));
+
+    const productSelect = document.getElementById("productSelect");
+    const countInput = document.getElementById("countInput");
+    const unitPriceInput = document.getElementById("unitPriceInput");
+    const totalPriceInput = document.getElementById("totalPriceInput");
+
+    function calculateTotal() {
+        const productId = parseInt(productSelect.value);
+        const count = parseInt(countInput.value) || 0;
+
+        const product = productPrices.find(p => p.id === productId);
+
+        if (!product) {
+            unitPriceInput.value = "";
+            totalPriceInput.value = "";
+            return;
+        }
+
+        const unitPrice = product.price;
+        const totalPrice = unitPrice * count;
+
+        unitPriceInput.value = unitPrice.toFixed(2);
+        totalPriceInput.value = totalPrice.toFixed(2);
+    }
+
+    productSelect.addEventListener("change", calculateTotal);
+    countInput.addEventListener("input", calculateTotal);
+</script>
