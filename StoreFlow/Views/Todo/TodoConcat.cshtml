@@ -1,0 +1,41 @@
+﻿@model List<Todo>
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Yapılacaklar Listesi";
+    int count = 0;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Concat</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Açıklama</th>
+                                <th>Durum</th>
+                                <th>Öncelik</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.Priority</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

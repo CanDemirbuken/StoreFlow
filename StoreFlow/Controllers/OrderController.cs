@@ -91,7 +91,7 @@ namespace StoreFlow.Controllers
             if (product == null)
             {
                 ModelState.AddModelError("", "Seçilen ürün bulunamadı.");
-                await FillCreateOrderViewBagsAsync();
+                await FillOrderViewBagAsync();
                 return View(order);
             }
 
@@ -106,7 +106,69 @@ namespace StoreFlow.Controllers
             return RedirectToAction(nameof(OrderList));
         }
 
-        private async Task FillCreateOrderViewBagsAsync()
+        public async ValueTask<IActionResult> DeleteOrder(int id)
+        {
+            var order = await context.Orders.FindAsync(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            context.Orders.Remove(order);
+            await context.SaveChangesAsync();
+            return RedirectToAction(nameof(OrderList));
+        }
+
+        [HttpGet]
+        public async ValueTask<IActionResult> UpdateOrder(int id)
+        {
+            var order = await context.Orders.FindAsync(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            await FillOrderViewBagAsync();
+
+            return View(order);
+        }
+
+        [HttpPost]
+        public async ValueTask<IActionResult> UpdateOrder(Order order)
+        {
+            var existingOrder = await context.Orders.FindAsync(order.Id);
+
+            if (existingOrder == null)
+            {
+                return NotFound();
+            }
+
+            var product = await context.Products.FindAsync(order.ProductId);
+
+            if (product == null)
+            {
+                ModelState.AddModelError("", "Seçilen ürün bulunamadı.");
+                await FillOrderViewBagAsync();
+                return View(order);
+            }
+
+            existingOrder.CustomerId = order.CustomerId;
+            existingOrder.ProductId = order.ProductId;
+            existingOrder.Count = order.Count;
+
+            existingOrder.UnitPrice = product.Price;
+            existingOrder.TotalPrice = product.Price * order.Count;
+
+            existingOrder.Status = order.Status;
+            existingOrder.Date = DateTime.Now;
+
+            await context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(OrderList));
+        }
+
+        private async Task FillOrderViewBagAsync()
         {
             ViewBag.Products = await context.Products
                 .Select(p => new SelectListItem

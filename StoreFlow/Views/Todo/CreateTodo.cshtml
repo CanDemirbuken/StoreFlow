@@ -1,0 +1,40 @@
+﻿@model Todo
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Yapılacak Ekle";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Yapılacak Ekleme Sayfası</h4>
+                <form class="forms-sample" method="post">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Yapılacak Adı</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Yapılacak Adı" asp-for="Description">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputName1">Statu</label>
+                        <input type="checkbox" class="form-check-input" id="exampleInputName1" asp-for="Status">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputName1">Öncelik</label>
+                        <select asp-for="Priority" class="form-control">
+                            <option value="">-- Öncelik Seçin --</option>
+                            <option value="Birincil">Birincil</option>
+                            <option value="İkincil">İkincil</option>
+                            <option value="Üçüncül">Üçüncül</option>
+                            <option value="Dördüncül">Dördüncül</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
