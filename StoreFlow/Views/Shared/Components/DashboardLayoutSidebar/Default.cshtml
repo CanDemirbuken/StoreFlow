@@ -34,70 +34,166 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Product/ProductList/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Ürünler</span>
+            <a class="nav-link" data-toggle="collapse" href="#products" aria-expanded="false">
+                <i class="fas fa-anchor menu-icon"></i>
+                <span class="menu-title">Ürün İşlemleri</span>
+                <i class="menu-arrow"></i>
             </a>
+
+            <div class="collapse" id="products">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/ProductList/">
+                            Tüm Ürünler
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/FirstFiveProductList/">
+                            İlk Beş Ürün
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/LastFiveProductList/">
+                            Son Beş Ürün
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/SkipFourProductList/">
+                            Dört Ürün Atlanarak On Ürün
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Product/FirstFiveProductList/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">İlk Beş Ürün</span>
+            <a class="nav-link" data-toggle="collapse" href="#customers" aria-expanded="false">
+                <i class="fas fa-cube menu-icon"></i>
+                <span class="menu-title">Müşteri İşlemleri</span>
+                <i class="menu-arrow"></i>
             </a>
+
+            <div class="collapse" id="customers">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerListOrderByName/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Müşteri Listesi (Ad Azalan)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerListOrderByDescBalance/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Müşteri Listesi (Bakiye Azalan)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerGetByCity/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Şehirde Müşteri Var mı?</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#orders" aria-expanded="false">
+                <i class="fas fa-people-carry menu-icon"></i>
+                <span class="menu-title">Sipariş İşlemleri</span>
+                <i class="menu-arrow"></i>
+            </a>
+
+            <div class="collapse" id="orders">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/AllOrderCountSmallerThanFive/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Siparişler</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/OrderListByStatus/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Siparişler (Durum)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/OrderListSearch/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Siparişler (Start-End)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/OrderList/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Siparişler (Async)</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Product/LastFiveProductList/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Son Beş Ürün</span>
+            <a class="nav-link" data-toggle="collapse" href="#todos" aria-expanded="false">
+                <i class="fas fa-bars menu-icon"></i>
+                <span class="menu-title">Todo İşlemleri</span>
+                <i class="menu-arrow"></i>
             </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Product/SkipFourProductList/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Dört Ürün Atlanarak On Ürün</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Customer/CustomerListOrderByName/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Müşteri Listesi (Ad Azalan)</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Customer/CustomerListOrderByDescBalance/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Müşteri Listesi (Bakiye Azalan)</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Customer/CustomerGetByCity/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Şehirde Müşteri Var mı?</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Order/AllOrderCountSmallerThanFive/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Siparişler</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Order/OrderListByStatus/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Siparişler (Duruma Göre)</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Order/OrderListSearch/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Siparişler (Start-End)</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Order/OrderList/">
-                <i class="far fa-file-alt menu-icon"></i>
-                <span class="menu-title">Siparişler (Async)</span>
-            </a>
+
+            <div class="collapse" id="todos">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoList/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Todo Listesi (Async)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoAggregate/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Todo (Aggregate)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoAppend/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Todo (Append)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoPrepend/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Todo (Prepend)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoChunk/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Todo (Chunk)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoConcat/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Todo (Concat)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoUnionBy/">
+                            <i class="far fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Todo (UnionBy)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
     </ul>
 </nav>

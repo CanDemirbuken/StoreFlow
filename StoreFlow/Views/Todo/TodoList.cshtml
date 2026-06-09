@@ -1,0 +1,47 @@
+﻿@model List<Todo>
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Yapılacaklar Listesi";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Yapılacaklar Listesi</h3>
+                <p class="card-description">
+                    <code>Yapılacaklar ile ilgili işlemlerinizi buradan yapabilirsiniz.</code>
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Açıklama</th>
+                                <th>Durum</th>
+                                <th>Öncelik</th>
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.Priority</td>
+                                    <td><a href="@Url.Action("DeleteTodo", "Todo", new { id = item.Id })" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="@Url.Action("UpdateTodo", "Todo", new { id = item.Id })" class="btn btn-outline-warning">Güncelle</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="@Url.Action("CreateTodo", "Todo")" class="btn btn-outline-primary">Yeni Yapılacak Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
