@@ -1,0 +1,40 @@
+﻿@model List<Customer>
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Müşteri Listesi";
+    int count = 0;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Müşteri Listesi (İstanbul Hariç)</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ad Soyad</th>
+                                <th>Şehir</th>
+                                <th>Bakiye</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(++count)</td>
+                                    <td>@item.Name @item.Surname</td>
+                                    <td>@item.City / @item.District</td>
+                                    <td>@item.Balance</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

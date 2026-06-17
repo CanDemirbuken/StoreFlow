@@ -1,0 +1,39 @@
+﻿@model List<CustomerCityGroup>
+@{
+    Layout = "_Layout";
+    int count = 0;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Müşteri Şehir Listesi (Group By)</h3>
+                <p class="card-description">
+                    <code>Müşteri sayısını şehir bazında görebilirsiniz.</code>
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Şehir Adı</th>
+                                <th>Müşteri Sayısı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(++count)</td>
+                                    <td>@item.City</td>
+                                    <td>@item.CustomerCount</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

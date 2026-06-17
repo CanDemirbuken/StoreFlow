@@ -4,6 +4,7 @@ using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using Microsoft.EntityFrameworkCore;
 using StoreFlow.Context;
 using StoreFlow.Entities;
+using Product = StoreFlow.Entities.Product;
 
 namespace StoreFlow.Controllers;
 
@@ -88,5 +89,46 @@ public class ProductController(StoreDbContext context) : Controller
     {
         var products = await context.Products.Include(p => p.Category).Skip(4).Take(10).ToListAsync();
         return View(products);
+    }
+
+    public async ValueTask<IActionResult> CreateProductWithAttach()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async ValueTask<IActionResult> CreateProductWithAttach(Product product)
+    {
+        var category = new Category { Id = 1 };
+        context.Categories.Attach(category);
+
+        var productValue = new Product
+        {
+            Name = product.Name,
+            Price = product.Price,
+            Stock = product.Stock,
+            Category = category
+        };
+
+        await context.Products.AddAsync(productValue);
+        await context.SaveChangesAsync();
+
+        return RedirectToAction(nameof(ProductList));
+    }
+
+    public async ValueTask<IActionResult> ProductLongCount()
+    {
+        var products = await context.Products.LongCountAsync();
+        ViewBag.count = products;
+
+        return View();
+    }
+
+    public async ValueTask<IActionResult> LastProduct()
+    {
+        var product = await context.Products.OrderBy(p => p.Id).LastAsync();
+        ViewBag.lastProduct = product.Name;
+
+        return View();
     }
 }

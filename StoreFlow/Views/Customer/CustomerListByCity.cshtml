@@ -1,0 +1,24 @@
+﻿@model List<IGrouping<string, Customer>>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Şehre Göre Müşteri Listesi";
+}
+
+<div class="row col-md-12">
+    @foreach (var group in Model)
+    {
+        <div class="card col-md-3">
+            <div class="card-title">
+                <h4>@group.Key</h4>
+                <div class="card-body">
+                    <ul>
+                        @foreach (var customer in group)
+                        {
+                            <li>@customer.Name @customer.Surname</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>

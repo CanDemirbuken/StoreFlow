@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using StoreFlow.Context;
 using StoreFlow.Entities;
+using StoreFlow.Models;
 
 namespace StoreFlow.Controllers;
 
@@ -72,5 +73,59 @@ public class CustomerController(StoreDbContext context) : Controller
         await context.SaveChangesAsync();
 
         return RedirectToAction(nameof(CustomerListOrderByName));
+    }
+
+    public async ValueTask<IActionResult> CustomerListByCity()
+    {
+        var customers = await context.Customers.ToListAsync();
+        var groupedCustomers = customers.GroupBy(c => c.City).ToList();
+
+        return View(groupedCustomers);
+    }
+
+    public async ValueTask<IActionResult> CustomersCountByCity()
+    {
+        var query = from c in context.Customers
+                    group c by c.City into cityGroup
+                    select new CustomerCityGroup
+                    {
+                        City = cityGroup.Key,
+                        CustomerCount = cityGroup.Count()
+                    };
+
+        var model = await query.OrderByDescending(c => c.CustomerCount).ToListAsync();
+
+        return View(model);
+    }
+
+    public async ValueTask<IActionResult> CustomersDistinctCity()
+    {
+        var cities = await context.Customers.Select(c => c.City).Distinct().ToListAsync();
+        return View(cities);
+    }
+
+    public async ValueTask<IActionResult> ParallelCustomers()
+    {
+        var customers = await context.Customers.ToListAsync();
+        var parallelCustomers = customers.AsParallel().Where(c => c.City.StartsWith("A", StringComparison.OrdinalIgnoreCase)).ToList();
+
+        return View(parallelCustomers);
+    }
+
+    public async ValueTask<IActionResult> ExceptByCustomers()
+    {
+        //var customers = await context.Customers.ToListAsync();
+        //var customerListInIstanbul = await context.Customers.Where(x => x.City == "Istanbul").ToListAsync();
+        //var customersExceptByIstanbul = customers.Except(customerListInIstanbul).ToList();
+
+        var customers = await context.Customers.ToListAsync();
+        var customerListInIstanbul = await context.Customers
+                                        .Where(x => x.City == "Istanbul")
+                                        .Select(c => c.City)
+                                        .ToListAsync();
+
+        var customersExceptByIstanbul = customers.ExceptBy(customerListInIstanbul, c => c.City).ToList();
+
+        return View(customersExceptByIstanbul);
     }
 }

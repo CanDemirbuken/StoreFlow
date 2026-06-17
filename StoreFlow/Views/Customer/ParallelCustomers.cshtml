@@ -1,0 +1,41 @@
+﻿@model List<Customer>
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Paralel Müşteri Listesi";
+    int count = 0;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Paralel Müşteri Listesi</h3>
+                <p class="card-description">
+                    <code>Paralel işlemler ile müşteri listesi</code>
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Müşteri</th>
+                                <th>Şehir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count++</td>
+                                    <td>@item.Name @item.Surname</td>
+                                    <td>@item.City</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
