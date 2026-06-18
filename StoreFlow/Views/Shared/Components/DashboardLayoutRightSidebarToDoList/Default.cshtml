@@ -1,0 +1,31 @@
+﻿@model List<Todo>
+
+<div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+    <div class="add-items d-flex px-3 mb-0">
+        <form class="form w-100" id="todoAddForm">
+            <div class="form-group d-flex">
+                <input type="text" class="form-control todo-list-input" placeholder="Yapılacak Ekle" id="todoDescription">
+                <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Ekle</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="list-wrapper px-3">
+        <ul class="d-flex flex-column-reverse todo-list" id="todoList">
+            @foreach (var item in Model)
+            {
+                var completedClass = item.Status ? "completed" : "";
+
+                <li class="@completedClass">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input data-todo-id="@item.Id" class="checkbox" type="checkbox" checked="@item.Status">
+                            @item.Description
+                        </label>
+                    </div>
+                    <i data-todo-id-remove="@item.Id" class="remove fa fa-times-circle"></i>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

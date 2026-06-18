@@ -60,4 +60,12 @@ public class CategoryController(StoreDbContext context) : Controller
         return RedirectToAction(nameof(CategoryList));
     }
 
+    public async ValueTask<IActionResult> ReverseCategory()
+    {
+        var categories = await context.Categories.OrderBy(x => x.Id).ToListAsync();
+        categories.Reverse();
+
+        return View(categories);
+    }
+
 }
