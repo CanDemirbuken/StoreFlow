@@ -1,0 +1,9 @@
+﻿@* @foreach (var item in ((IEnumerable<object>)ViewBag.customers).OfType<Customer>())
+{
+    <p>@item.Name @item.Surname - @item.City</p>
+} *@
+
+@foreach (var item in ((IEnumerable<object>)ViewBag.customers).Cast<Customer>())
+{
+    <p>@item.Name @item.Surname - @item.City</p>
+}

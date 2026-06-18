@@ -68,4 +68,20 @@ public class CategoryController(StoreDbContext context) : Controller
         return View(categories);
     }
 
+    public async ValueTask<IActionResult> FirstCategory()
+    {
+        var firstCategory = await context.Categories.FirstAsync();
+        ViewBag.firstCategory = firstCategory.Name;
+
+        return View();
+    }
+
+    public async ValueTask<IActionResult> SingleOrDefaultCategory()
+    {
+        var singleCategory = await context.Categories.SingleOrDefaultAsync(x => x.Name == "Anne ve Bebek Ürünleri");
+        ViewBag.singleCategory = singleCategory.Name;
+
+        return View();
+    }
+
 }

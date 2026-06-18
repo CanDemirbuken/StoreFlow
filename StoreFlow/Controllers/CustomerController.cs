@@ -128,4 +128,37 @@ public class CustomerController(StoreDbContext context) : Controller
 
         return View(customersExceptByIstanbul);
     }
+
+    public async ValueTask<IActionResult> CustomerListWithDefaultIfEmpty()
+    {
+        var customers = await context.Customers.Where(x => x.City == "Hakkari").ToListAsync();
+
+        var customersDefaultIfEmpty = customers.DefaultIfEmpty(new Customer
+        {
+            Id = 0,
+            Name = "Kayıt Yok",
+            Surname = "-",
+            City = "Ankara"
+        }).ToList();
+
+        return View(customersDefaultIfEmpty);
+    }
+
+    public async ValueTask<IActionResult> CustomerIntersectByCity()
+    {
+        var cityList1 = await context.Customers.Where(x => x.City == "Istanbul").Select(y => y.Name + " " + y.Surname).ToListAsync();
+        var cityList2 = await context.Customers.Where(x => x.City == "Ankara").Select(y => y.Name + " " + y.Surname).ToListAsync();
+
+        var intersectByCity = cityList1.Intersect(cityList2).ToList();
+
+        return View(intersectByCity);
+    }
+
+    public async ValueTask<IActionResult> CustomerCastExample()
+    {
+        var customers = await context.Customers.ToListAsync();
+        ViewBag.customers = customers;
+
+        return View();
+    }
 }
