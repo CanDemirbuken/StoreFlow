@@ -4,7 +4,7 @@ using StoreFlow.Context;
 
 namespace StoreFlow.ViewComponents.DashboardLayoutRightSidebarComponent;
 
-public class DashboardLayoutRightSidebarMessages(StoreDbContext context) : ViewComponent
+public class DashboardLayoutRightSidebarMessagesViewComponent(StoreDbContext context) : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {

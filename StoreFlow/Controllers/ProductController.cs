@@ -4,6 +4,7 @@ using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using Microsoft.EntityFrameworkCore;
 using StoreFlow.Context;
 using StoreFlow.Entities;
+using StoreFlow.Models;
 using Product = StoreFlow.Entities.Product;
 
 namespace StoreFlow.Controllers;
@@ -130,5 +131,20 @@ public class ProductController(StoreDbContext context) : Controller
         ViewBag.lastProduct = product.Name;
 
         return View();
+    }
+
+    public IActionResult ProductListWihtCategory()
+    {
+        var result = from c in context.Categories
+                     join p in context.Products
+                        on c.Id equals p.CategoryId
+                     select new ProductWithCategoryViewModel
+                     {
+                         ProductName = p.Name,
+                         ProductStock = p.Stock,
+                         CategoryName = c.Name
+                     };
+
+        return View(result);
     }
 }

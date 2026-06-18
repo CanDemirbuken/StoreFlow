@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StoreFlow.Context;
 using StoreFlow.Entities;
+using StoreFlow.Models;
 using System.Xml.XPath;
 
 namespace StoreFlow.Controllers
@@ -193,6 +194,21 @@ namespace StoreFlow.Controllers
                     price = p.Price
                 })
                 .ToListAsync();
+        }
+
+        public IActionResult OrderListWithCustomer()
+        {
+            var result = from customer in context.Customers
+                         join order in context.Orders
+                            on customer.Id equals order.CustomerId
+                            into orderGroup
+                         select new CustomerOrderViewMOdel
+                         {
+                             CustomerName = $"{customer.Name} {customer.Surname}",
+                             Orders = orderGroup.ToList()
+                         };
+
+            return View(result.ToList());
         }
     }
 }

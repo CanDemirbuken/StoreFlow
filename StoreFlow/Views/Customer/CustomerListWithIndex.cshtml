@@ -1,0 +1,38 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Müşteri Listesi (Index)</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Şehir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Index</td>
+                                    <td>@item.CustomerName</td>
+                                    <td>@item.CustomerSurname</td>
+                                    <td>@item.CustomerCity</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

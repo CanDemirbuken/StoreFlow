@@ -161,4 +161,19 @@ public class CustomerController(StoreDbContext context) : Controller
 
         return View();
     }
+
+    public async ValueTask<IActionResult> CustomerListWithIndex()
+    {
+        var customers = await context.Customers.ToListAsync();
+
+        var customersWithIndex = customers.Select((customer, index) => new
+        {
+            Index = index + 1,
+            CustomerName = customer.Name,
+            CustomerSurname = customer.Surname,
+            CustomerCity = customer.City
+        }).ToList();
+
+        return View(customersWithIndex);
+    }
 }
