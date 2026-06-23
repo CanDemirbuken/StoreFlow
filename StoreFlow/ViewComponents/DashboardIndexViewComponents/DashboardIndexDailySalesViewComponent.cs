@@ -1,11 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using StoreFlow.Context;
 
 namespace StoreFlow.ViewComponents.DashboardIndexViewComponents;
 
-public class DashboardIndexDailySalesViewComponent : ViewComponent
+public class DashboardIndexDailySalesViewComponent(StoreDbContext context) : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        return View();
+        var todoPriorityChartData = await context.Todos
+            .GroupBy(t => t.Priority)
+            .Select(g => new Models.TodoPriorityChartViewModel
+            {
+                Status = g.Key.ToString(),
+                Count = g.Count()
+            })
+            .ToListAsync();
+
+        return View(todoPriorityChartData);
     }
 }

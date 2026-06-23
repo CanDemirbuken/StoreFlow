@@ -1,4 +1,5 @@
-﻿@model List<TodoPriorityChartViewModel>
+﻿@model List<OrderStatusChartViewModel>
+
 @using Newtonsoft.Json
 
 @{
@@ -7,22 +8,23 @@
 }
 
 <style>
-    .todo-status-chart-wrapper {
+    .chart-wrapper {
         position: relative;
         width: 100%;
-        height: 450px;
+        height: 360px;
     }
 </style>
 
-<div class="col-md-4 grid-margin stretch-card">
+<div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">
-                <i class="fas fa-tasks"></i> Yapılacaklar - Öncelik Dağılımı
+                <i class="fas fa-gift"></i>
+                Sipariş Durumları
             </h4>
 
-            <div class="todo-status-chart-wrapper">
-                <canvas id="todo-status-chart"></canvas>
+            <div class="chart-wrapper">
+                <canvas id="orders-chart-status"></canvas>
             </div>
         </div>
     </div>
@@ -31,25 +33,24 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
     const labels = @Html.Raw(JsonConvert.SerializeObject(statusLabels));
     const counts = @Html.Raw(JsonConvert.SerializeObject(statusCounts));
 
-    const ctx = document.getElementById('todo-status-chart').getContext('2d');
+    const ctx = document.getElementById('orders-chart-status').getContext('2d');
 
     const chart = new Chart(ctx, {
-    type: 'pie',
+    type: 'doughnut',
     data: {
     labels: labels,
     datasets: [{
-    label: 'Duruma Göre Yapılacaklar',
+    label: 'Sipariş Durumları',
     data: counts,
     backgroundColor: [
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
     'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)'
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 206, 86, 0.6)'
     ],
     borderColor: '#fff',
     borderWidth: 1
@@ -64,6 +65,5 @@
     }
     }
     }
-    });
     });
 </script>

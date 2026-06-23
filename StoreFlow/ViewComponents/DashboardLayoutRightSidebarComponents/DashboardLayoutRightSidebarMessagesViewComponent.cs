@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using StoreFlow.Context;
 
-namespace StoreFlow.ViewComponents.DashboardLayoutRightSidebarComponent;
+namespace StoreFlow.ViewComponents.DashboardLayoutRightSidebarComponents;
 
 public class DashboardLayoutRightSidebarMessagesViewComponent(StoreDbContext context) : ViewComponent
 {
